@@ -13,7 +13,6 @@ public class Attack : MonoBehaviour
   public float jabRate = 2f;
   float nextJabTime = 0f;
 
-
     // Update is called once per frame
     void Update()
     {
@@ -28,14 +27,17 @@ if (Time.time >= nextJabTime) {
     }
 
 
-    void Jab(){
+   void Jab()
+    {
 Collider2D [] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+// attack animation
   animator.SetTrigger("Jab");
   IEnumerator activeFrame(){
     yield return new WaitForSeconds(0.25f);
+// damages the enemy
     foreach(Collider2D enemy in hitEnemies)
     {
-      Debug.Log("We Hit " + enemy.name);
+      enemy.GetComponent<Enemy>().TakeDamage(15);
     }
   }
   StartCoroutine(activeFrame());
