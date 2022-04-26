@@ -6,6 +6,7 @@ To showcase the development of the project and the teamwork that comes with it. 
 ###### This is a fighting game developed using the following software:
 * [Unity](https://unity.com/) For game development 
 * [Gimp](https://www.gimp.org/) For game-art purpose 
+* [Clip Studio Paint](https://www.clipstudio.net/en/) For game-art purpose
 ###### Organized using our team trello board, which can be reached here:
 * [WCFG Trello Board](https://trello.com/b/Y1FOQtIZ/wcfg)
 
