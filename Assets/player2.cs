@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class player2 : MonoBehaviour
 {
     public int maxHealth = 100;
     int currentHealth;
@@ -23,11 +23,11 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-   
+
 
     void Die()
     {
-        Debug.Log("The enemy died1!1");
+        Debug.Log("Player 1 Wins");
         Destroy(gameObject);
     }
 }

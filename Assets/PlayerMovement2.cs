@@ -20,13 +20,24 @@ public class PlayerMovement2 : MonoBehaviour
 
 		animator.SetFloat("Speed", Mathf.Abs(horizontalMove2));
 
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetButtonDown("Jump2"))
 		{
 			jump2 = true;
 		}
 
-	}
+		if (Input.GetButtonDown("Crouch2"))
+		{
+			crouch2 = true;
+			animator.SetBool("Crouch", true);
+			runSpeed = 0f;
+			} else if (Input.GetButtonUp("Crouch2"))
+			{
+				crouch2 = false;
+				animator.SetBool("Crouch", false);
+				runSpeed = 40f;
+			}
 
+	}
 	void FixedUpdate()
 	{
 		// Move our character
@@ -34,4 +45,3 @@ public class PlayerMovement2 : MonoBehaviour
 		jump2 = false;
 	}
 }
-

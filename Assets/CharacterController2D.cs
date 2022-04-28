@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public class CharacterController2D : MonoBehaviour
 {
 	[SerializeField] private float m_JumpForce = 400f;							// Amount of force added when the player jumps.
@@ -37,7 +36,6 @@ public class CharacterController2D : MonoBehaviour
 				m_Grounded = true;
 		}
 	}
-
 
 	public void Move(float move, bool crouch, bool jump)
 	{
