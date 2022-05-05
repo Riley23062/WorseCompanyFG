@@ -21,21 +21,15 @@ animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 		if (Input.GetButtonDown("Jump"))
 		{
 			jump = true;
-			animator.SetBool("IsJumping", true);
 		}
-if(jump == false) {
-	 animator.SetBool("IsJumping", false);
 
-}
 		if (Input.GetButtonDown("Crouch"))
 		{
 			crouch = true;
-			animator.SetBool("Crouch", true);
 			runSpeed = 0f;
 		} else if (Input.GetButtonUp("Crouch"))
 {
 	crouch = false;
-				animator.SetBool("Crouch", false);
 			runSpeed = 40f;
 }
 

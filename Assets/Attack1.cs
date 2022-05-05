@@ -9,23 +9,39 @@ public class Attack1 : MonoBehaviour
   public Transform attackPoint;
     public Transform mediumPoint;
         public Transform heavyPoint;
+              public Transform crLightPoint;
+              public LayerMask player1Layers;
+              //ranges for each attack
   public float attackRange = 0.5f;
     public float mediumRange = 0.5f;
       public float heavyRange = 0.5f;
-  public LayerMask player1Layers;
+            public float crLightRange = 0.5f;
+            //rates for each attack
   public float jabRate = 5f;
+    public float crLightRate = 5f;
+    public float mediumRate = 2f;
+    public float heavyRate = 1.2f;
+    //time until next attack
   float nextJabTime = 0f;
   float nextmediumTime = 0f;
     float nextHeavyTime = 0f;
-    public float mediumRate = 2f;
-        public float heavyRate = 1.2f;
+    float nextCrLightTime = 0f;
+    bool crouch = false;
+
+
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetButtonDown("Crouch"))
+      if(Input.GetButtonUp("Crouch")){
+        crouch = false;
+      }
+        if (Input.GetButtonDown("Crouch")){
+              crouch = true;
+            }
+      if (crouch == true)
       {
 
-      } else
+      } else if(crouch == false)
       {
         if (Time.time >= nextJabTime) {
           if (Input.GetKeyDown(KeyCode.J)){

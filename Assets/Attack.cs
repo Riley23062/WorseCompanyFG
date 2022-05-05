@@ -9,24 +9,45 @@ public class Attack : MonoBehaviour
   public Transform attackPoint;
     public Transform kickPoint;
         public Transform heavyPoint;
+              public Transform crLightPoint;
+              public LayerMask player2Layers;
+              //ranges for each attack
   public float attackRange = 0.5f;
     public float kickRange = 0.5f;
       public float heavyRange = 0.5f;
-  public LayerMask player2Layers;
+            public float crLightRange = 0.5f;
+            //rates for each attack
   public float jabRate = 5f;
+    public float crLightRate = 5f;
+    public float kickRate = 2f;
+    public float heavyRate = 1.2f;
+    //time until next attack
   float nextJabTime = 0f;
   float nextKickTime = 0f;
     float nextHeavyTime = 0f;
-    public float kickRate = 2f;
-        public float heavyRate = 1.2f;
+    float nextCrLightTime = 0f;
+    bool crouch = false;
     // Update is called once per frame
     void Update()
     {
-      if (Input.GetButtonDown("Crouch"))
+if(Input.GetButtonUp("Crouch")){
+  crouch = false;
+}
+  if (Input.GetButtonDown("Crouch")){
+        crouch = true;
+      }
+      
+if (crouch == true) {
+  if (Time.time >= nextCrLightTime) {
+    if (Input.GetKeyDown(KeyCode.Z)){
+
+      CrLight();
+      nextCrLightTime = Time.time + 1f/crLightRate;
+    }
+  }
+}   else if (crouch == false)
       {
 
-      } else
-      {
         if (Time.time >= nextJabTime) {
           if (Input.GetKeyDown(KeyCode.Z)){
 
@@ -49,7 +70,6 @@ public class Attack : MonoBehaviour
           }
         }
       }
-
     }
 
 
@@ -84,6 +104,7 @@ IEnumerator activeFrame(){
 }
 StartCoroutine(activeFrame());
 }
+
 void Heavy()
  {
 Collider2D [] hitPlayer2 = Physics2D.OverlapCircleAll(heavyPoint.position,heavyRange, player2Layers);
@@ -99,18 +120,40 @@ IEnumerator activeFrame(){
 }
 StartCoroutine(activeFrame());
 }
+void CrLight()
+ {
+Collider2D [] hitPlayer2 = Physics2D.OverlapCircleAll(crLightPoint.position, crLightRange, player2Layers);
+// attack animation
+animator.SetTrigger("crLight");
+IEnumerator activeFrame(){
+
+ yield return new WaitForSeconds(0.33333333333f);
+// damages the player2
+ foreach(Collider2D player2 in hitPlayer2)
+ {
+   player2.GetComponent<player2>().TakeDamage(15);
+ }
+}
+StartCoroutine(activeFrame());
+}
 
 void OnDrawGizmosSelected()
 {
-  if (attackPoint == null)
+  if (attackPoint == null){
       return;
-
-      if (kickPoint == null)
+}
+      if (kickPoint == null){
           return;
-      if (heavyPoint == null)
+}
+      if (heavyPoint == null){
             return;
+          }
+            if (crLightPoint == null){
+                  return;
+                }
   Gizmos.DrawWireSphere(kickPoint.position, kickRange);
   Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     Gizmos.DrawWireSphere(heavyPoint.position, heavyRange);
+      Gizmos.DrawWireSphere(crLightPoint.position, crLightRange);
 }
 }
