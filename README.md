@@ -7,6 +7,7 @@ To showcase the development of the project and the teamwork that comes with it. 
 * [Unity](https://unity.com/) For game development 
 * [Gimp](https://www.gimp.org/) For game-art purpose 
 * [Clip Studio Paint](https://www.clipstudio.net/en/) For game-art purpose
+* * [FL Studio](https://www.image-line.com/) [Ableton](https://www.ableton.com/en/) For music
 ###### Organized using our team trello board, which can be reached here:
 * [WCFG Trello Board](https://trello.com/b/Y1FOQtIZ/wcfg)
 
@@ -14,15 +15,32 @@ To showcase the development of the project and the teamwork that comes with it. 
 &nbsp;***Player One Controls:***
 
 &nbsp;**Movement:**
-WASD movement.
-W - Jump,
-A - Left,
-S - Crouch,
-D - Right
+Arrow Key movement.
+UP - Jump,
+LEFT - Move Left,
+DOWN - Crouch,
+RIGHT - Move Right
 
 **Attack:**
 Z - Jab Attack,
-X - Kick Attack
+X - Kick Attack,
+C - Uppercut Attack
+**Crouching Attacks:**
+Z - Crouching Punch
+
+&nbsp;***Player Two Controls:***
+
+&nbsp;**Movement:**
+WASD movement.
+W - Jump,
+A - Move Left,
+S - Crouch,
+D - Move Right
+
+**Attack:**
+J - Jab Attack,
+K - Medium Attack,
+L - Heavy Attack
 __Will be updated when more controls come out.__
 
 
