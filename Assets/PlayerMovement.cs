@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour {
 
 	public CharacterController2D controller;
 	public Animator animator;
 	public float runSpeed = 40f;
-
 	float horizontalMove = 0f;
-	bool jump = false;
+ bool jump = false;
 	bool crouch = false;
+
 	// Update is called once per frame
 	void Update () {
 
@@ -23,8 +23,17 @@ animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 			jump = true;
 		}
 
-	}
+		if (Input.GetButtonDown("Crouch"))
+		{
+			crouch = true;
+			runSpeed = 0f;
+		} else if (Input.GetButtonUp("Crouch"))
+{
+	crouch = false;
+			runSpeed = 40f;
+}
 
+	}
 	void FixedUpdate ()
 	{
 		// Move our character
