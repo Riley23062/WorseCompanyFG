@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class player2 : MonoBehaviour
 {
+    public HealthBar healthBar;
     public int maxHealth = 100;
     int currentHealth;
 
@@ -11,11 +12,13 @@ public class player2 : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
         //insert hurt animation
 
         if (currentHealth <= 0)

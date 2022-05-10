@@ -4,20 +4,29 @@ using UnityEngine;
 
 public class player1 : MonoBehaviour
 {
-    public int maxHealth = 100;
-    int currentHealth;
-
+  public HealthBar healthBar;
+  	public PlayerMovement controller;
+    public float maxHealth = 100f;
+ float currentHealth;
+float blockDamage = 0.05f;
         // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        //insert hurt animation
+      if(controller.block == true){
+        healthBar.SetHealth(currentHealth);
+        currentHealth -= damage * blockDamage;
 
+      } else if (controller.block == false){
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        //insert hurt animation
+}
         if (currentHealth <= 0)
         {
             Die();

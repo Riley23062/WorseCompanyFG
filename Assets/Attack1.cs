@@ -41,7 +41,7 @@ public class Attack1 : MonoBehaviour
       if (crouch == true)
       {
         if (Time.time >= nextCrLightTime) {
-          if (Input.GetKeyDown(KeyCode.Z)){
+          if (Input.GetKeyDown(KeyCode.J)){
 
             CrLight();
             nextCrLightTime = Time.time + 1f/crLightRate;
@@ -123,16 +123,16 @@ StartCoroutine(activeFrame());
 }
 void CrLight()
  {
-Collider2D [] hitPlayer2 = Physics2D.OverlapCircleAll(crLightPoint.position, crLightRange, player2Layers);
+Collider2D [] hitPlayer1 = Physics2D.OverlapCircleAll(crLightPoint.position, crLightRange, player1Layers);
 // attack animation
 animator.SetTrigger("crLight");
 IEnumerator activeFrame(){
 
  yield return new WaitForSeconds(0.33333333333f);
 // damages the player2
- foreach(Collider2D player2 in hitPlayer2)
+ foreach(Collider2D player1 in hitPlayer1)
  {
-   player2.GetComponent<player2>().TakeDamage(15);
+   player1.GetComponent<player1>().TakeDamage(15);
  }
 }
 StartCoroutine(activeFrame());

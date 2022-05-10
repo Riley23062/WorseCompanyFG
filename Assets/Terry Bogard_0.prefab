@@ -213,6 +213,7 @@ MonoBehaviour:
   controller: {fileID: 1181519274344846830}
   animator: {fileID: 1181519274344846828}
   runSpeed: 40
+  block: 0
 --- !u!95 &1181519274344846828
 Animator:
   serializedVersion: 4
@@ -273,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92e63a4233edc4a4cac52e001289bedb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 1181519274344846829}
   maxHealth: 600
 --- !u!1 &1181519275034483041
 GameObject:
