@@ -32,15 +32,21 @@ public class Attack1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(Input.GetButtonUp("Crouch")){
+      if(Input.GetButtonUp("Crouch2")){
         crouch = false;
       }
-        if (Input.GetButtonDown("Crouch")){
+        if (Input.GetButtonDown("Crouch2")){
               crouch = true;
             }
       if (crouch == true)
       {
+        if (Time.time >= nextCrLightTime) {
+          if (Input.GetKeyDown(KeyCode.Z)){
 
+            CrLight();
+            nextCrLightTime = Time.time + 1f/crLightRate;
+          }
+        }
       } else if(crouch == false)
       {
         if (Time.time >= nextJabTime) {
@@ -115,7 +121,22 @@ IEnumerator activeFrame(){
 }
 StartCoroutine(activeFrame());
 }
+void CrLight()
+ {
+Collider2D [] hitPlayer2 = Physics2D.OverlapCircleAll(crLightPoint.position, crLightRange, player2Layers);
+// attack animation
+animator.SetTrigger("crLight");
+IEnumerator activeFrame(){
 
+ yield return new WaitForSeconds(0.33333333333f);
+// damages the player2
+ foreach(Collider2D player2 in hitPlayer2)
+ {
+   player2.GetComponent<player2>().TakeDamage(15);
+ }
+}
+StartCoroutine(activeFrame());
+}
 void OnDrawGizmosSelected()
 {
   if (attackPoint == null)
@@ -125,8 +146,12 @@ void OnDrawGizmosSelected()
           return;
       if (heavyPoint == null)
             return;
+            if (crLightPoint == null){
+              return;
+            }
   Gizmos.DrawWireSphere(mediumPoint.position, mediumRange);
   Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     Gizmos.DrawWireSphere(heavyPoint.position, heavyRange);
+    Gizmos.DrawWireSphere(crLightPoint.position, crLightRange);
 }
 }
